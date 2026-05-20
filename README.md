@@ -37,10 +37,7 @@ El sistema está compuesto por las siguientes entidades:
 - Las tarifas están hardcodeadas en memoria como pide el enunciado
 - Se asume que una llamada pertenece a un solo período de facturación, 
 no se contempla el caso de una llamada que empiece en un mes y termine en otro
-- Se asume que el suscriptor origen de la llamada es siempre argentino. 
-La clasificación local/nacional/internacional se hace desde esa perspectiva. 
-- Se asume que dos números con la misma localidad y país son locales entre sí, 
-esto dependería de los prefijos telefónicos
+- Para simplificar el modelo, una llamada se considera local cuando origen y destino pertenecen a la misma localidad y país.
 
 
 ## Proceso de desarrollo
