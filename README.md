@@ -20,8 +20,7 @@ El sistema está compuesto por las siguientes entidades:
   comparando los números de origen y destino.
 - **'LocalCall', 'NationalCall', 'InternationalCall'** cada una sabe comunicar 
   su tipo a 'TariffResolver' y 'MonthlyBilling'.
-- **'Tariff'** jerarquía abstracta. Cada subclase conoce su tarifa y se 
-  instancia con el valor correcto.
+- **'Tariff'** jerarquía abstracta. Cada subclase representa una estrategia de tarifación distinta
 - **'TariffResolver'** calcula el costo aplicando la tarifa correspondiente.
 - **'Subscriber'** encapsula nombre, abono mensual básico e historial de llamadas.
 - **'MonthlyBilling'** genera la factura de un suscriptor para un período dado. 
@@ -44,25 +43,26 @@ no se contempla el caso de una llamada que empiece en un mes y termine en otro
 
 Aplique TDD comenzando por las entidades más pequeñas del dominio 
 ('PhoneNumber', 'Call') y construyendo hacia las más complejas ('MonthlyBilling'). 
-El diseño evolucionó durante el proceso, también hubo muchos refactors o cambios de idea
-que tuve porque o sentí mal representada una entidad o su responsabilidad frente al 
-modelo. 
+El diseño evolucionó durante el proceso mediante distintos refactors motivados por cambios 
+en la comprensión del dominio y las responsabilidades de cada objeto.
 Una decisión del proceso fue la introducción de 'TariffResolver' con Double Dispatch que
 surgió al llegar al punto en que quería separar las llamadas por tipo sin condicionales. 
 
-Busqué demostrar conocimiento de patrones de diseño OO, además de en programación OO 
-siendo consciente de que su aplicación puede a veces agregar complejidad innecesaria. 
+Busqué priorizar un diseño orientado a objetos, aplicando patrones cuando aportaban 
+claridad al modelo. Soy consciente de que estas decisiones pueden introducir complejidad 
+innecesaria si no responden a una necesidad real del dominio.
 En un contexto real cada decisión debería estar justificada por una necesidad del modelo 
 ya que la simplicidad sigue siendo la mejor medida de calidad (en mi opinión).
-Viendo el desarrollo que hice, quizas hay cosas que haria distintas. No se si resolvi 
-de la mejor manera los tipos de Call contra sus tarifas, lo voy a seguir pensando. 
+Viendo el desarrollo que hice, hay aspectos que posiblemente resolvería distinto hoy. 
+En particular, seguiría revisando el modelado entre los tipos de Call y las tarifas 
+para evaluar si la separación actual realmente aporta suficiente valor frente a su complejidad.
 
 
 ## Qué mejoraría
 
 - Manejo de errores explícito: validaciones y errores descriptivos ante datos inválidos. 
-- Analizaría que tipos de objeto estoy usando y si son la mejor opción. 
-- Filtrado de llamadas por período en generate, pero también habría que ver si ya podría ser filtrado de antes. 
+- Mejoraría el filtrado de llamadas por período para evitar procesar información
+innecesaria durante la generación de la factura.
 - Manejo de feriados en el calendario
 - Versionado de tarifas para mantener precisión en facturas históricas 
 - 'PhoneNumber' es una representación simplificada, la localidad y el país se podrían inferir a partir del 
