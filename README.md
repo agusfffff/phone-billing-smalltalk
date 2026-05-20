@@ -14,17 +14,17 @@ Implementado en Pharo Smalltalk como ejercicio técnico.
 
 El sistema está compuesto por las siguientes entidades:
 
-- **'PhoneNumber'** — value object que encapsula número, localidad y país. 
+- **'PhoneNumber'** value object que encapsula número, localidad y país. 
   Sabe compararse geográficamente con otro número.
-- **'Call'** — clase abstracta. El factory method decide qué subclase instanciar 
+- **'Call'** clase abstracta. El factory method decide qué subclase instanciar 
   comparando los números de origen y destino.
 - **'LocalCall', 'NationalCall', 'InternationalCall'** cada una sabe comunicar 
   su tipo a 'TariffResolver' y 'MonthlyBilling'.
-- **'Tariff'** — jerarquía abstracta. Cada subclase conoce su tarifa y se 
+- **'Tariff'** jerarquía abstracta. Cada subclase conoce su tarifa y se 
   instancia con el valor correcto.
-- **'TariffResolver'** — calcula el costo aplicando la tarifa correspondiente.
-- **'Subscriber'** — encapsula nombre, abono mensual básico e historial de llamadas.
-- **'MonthlyBilling'** — genera la factura de un suscriptor para un período dado. 
+- **'TariffResolver'** calcula el costo aplicando la tarifa correspondiente.
+- **'Subscriber'** encapsula nombre, abono mensual básico e historial de llamadas.
+- **'MonthlyBilling'** genera la factura de un suscriptor para un período dado. 
   
 
 ## Supuestos
